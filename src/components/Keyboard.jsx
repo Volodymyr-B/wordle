@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { AppContext } from "../App";
-
 import KeyboardKey from "./KeyboardKey";
 
 const Keyboard = () => {

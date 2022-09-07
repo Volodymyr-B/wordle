@@ -23,6 +23,8 @@
   width: 100vw;
 }
 .header div {
+  cursor: pointer;
+  user-select: none;
   color: rgba(0, 0, 0, 0);
   background: linear-gradient(
     163deg,

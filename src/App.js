@@ -8,7 +8,7 @@ import Keyboard from "./components/Keyboard";
 import words from "./words.json";
 
 export const AppContext = createContext();
-const correctWord = words[Math.floor(Math.random() * words.length)];
+let correctWord = words[Math.floor(Math.random() * words.length)];
 
 function App() {
   const defaultBoard = [
@@ -98,10 +98,19 @@ function App() {
       document.removeEventListener("keyup", handleKey);
     };
   }, [handleKey]);
-
+  const onRestart = () => {
+    arrGreen.current = [];
+    arrYellow.current = [];
+    arrGrey.current = [];
+    setFinish({ win: false, lost: false });
+    setBoard(defaultBoard);
+    setColors("");
+    setPosition({ row: 0, line: 0 });
+    correctWord = words[Math.floor(Math.random() * words.length)];
+    console.log(correctWord);
+  };
   return (
     <div className="App">
-      <Header />
       <AppContext.Provider
         value={{
           board,
@@ -122,8 +131,10 @@ function App() {
           onDelete,
           onAddLetter,
           handleFloater,
+          onRestart,
         }}
       >
+        <Header />
         <Floater />
         <End />
         <Board />
